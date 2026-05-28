@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Habibi");
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background-image: url("/fundoLogin.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container1 {
+  width: 50%;
+  min-height: 90dvh;
+  background-color: rgba(255, 255, 255, 0.303);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container2 {
+  width: 95%;
+  min-height: 85dvh;
+  background-color: rgba(255, 255, 255, 0.201);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 95%;
+  min-height: 80dvh;
+  background-color: #dcabed;
+  border-radius: 30px;
+  display: flex;
+}
+
+.left {
+  width: 60%;
+  background-color: #f9edff;
+  border-radius: 30px;
+  height: 80dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-inline: 20px;
+}
+
+.logo img {
+  width: 40%;
+  margin-left: -15px;
+}
+
+.text {
+  font-family: "Habibi";
+}
+.text h1 {
+  color: #5a189a;
+  font-size: 35px;
+}
+
+.text p {
+  font-size: 18px;
+  color: #474747;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.forgot-password {
+  color: #5a189a;
+  font-family: "Habibi";
+}
+
+.register-box {
+  background-color: #7b2cbf;
+  width: 100%;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 12px;
+  padding-block: 25px;
+  gap: 20px;
+}
+
+.right {
+  padding-inline: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 80dvh;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+.register-box h2 {
+  font-family: "Habibi";
+  text-align: center;
+}

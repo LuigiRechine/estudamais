@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css?family=Habibi");
+
+.cadastro-page {
+  width: 100%;
+  height: 100vh;
+
+  background-image: url("/fundoLogin.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container1 {
+  width: 35%;
+  height: 95dvh;
+  background-color: rgba(255, 255, 255, 0.303);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container2 {
+  width: 95%;
+  height: 90dvh;
+  background-color: rgba(255, 255, 255, 0.201);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 95%;
+  height: 85dvh;
+
+  background-color: #f9edffcb;
+
+  border-radius: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 35px;
+
+  justify-content: center;
+  
+}
+
+.logo img {
+  width: 140px;
+}
+
+.logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
