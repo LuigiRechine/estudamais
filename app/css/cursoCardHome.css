@@ -1,0 +1,51 @@
+.curso-card {
+  width: 300px;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #F6E6FF;
+
+  text-decoration: none;
+
+  border-radius: 20px;
+}
+
+.curso-card img {
+  width: 100%;
+  height: 280px;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+}
+
+.curso-info {
+  margin-block: 20px;
+
+  margin-inline: 10px;
+
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background-color: #ffffff;
+
+  border-radius: 15px;
+}
+
+.curso-info span {
+  color: #9c4df0;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.seta {
+  color: black !important;
+  font-size: 28px !important;
+}

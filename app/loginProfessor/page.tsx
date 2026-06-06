@@ -28,7 +28,7 @@ export default function Login() {
 
                 <Button text="ENTRAR" variant="type1" link="/" />
 
-                <a href="/esqueciSenha" className="forgot-password">
+                <a href="/esqueciSenha/professor" className="forgot-password">
                   Esqueci minha senha
                 </a>
               </form>
@@ -45,7 +45,7 @@ export default function Login() {
                     COM A GENTE?
                   </h2>
 
-                  <Button text="FAZER MATRÍCULA" variant="type2" link="/cadastro"/>
+                  <Button text="FAZER MATRÍCULA" variant="type2" link="/cadastro/professor"/>
                 </div>
               </div>
             </div>

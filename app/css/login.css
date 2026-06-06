@@ -94,6 +94,8 @@
   padding-inline: 12px;
   padding-block: 25px;
   gap: 20px;
+  color: #ffffff;
+  font-family: "Habibi";
 }
 
 .right {

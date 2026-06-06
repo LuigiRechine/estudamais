@@ -1,0 +1,68 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding-inline: 50px;
+  padding-block: 22dvh;
+
+  gap: 40px;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 54px;
+  line-height: 1.2;
+}
+
+.hero-text em {
+  font-style: italic;
+}
+
+.hero-text p {
+  margin-top: 40px;
+
+  color: #a35bf3;
+
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.cards {
+  display: flex;
+  gap: 25px;
+}
+
+
+
+
+.beneficios-section {
+  width: 100%;
+
+  background-color: #66259e;
+
+  padding: 60px 0 80px;
+}
+
+.beneficios-section h2 {
+  text-align: center;
+
+  color: white;
+
+  font-size: 48px;
+  font-weight: normal;
+
+  margin-bottom: 60px;
+}
+
+.beneficios-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+
+  flex-wrap: wrap;
+}

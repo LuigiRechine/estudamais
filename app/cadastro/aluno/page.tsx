@@ -1,6 +1,6 @@
-import "../css/cadastro.css";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import "../../css/cadastro.css";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 export default function Cadastro() {
   return (
