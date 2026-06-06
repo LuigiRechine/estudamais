@@ -1,0 +1,66 @@
+.curso-card {
+  width: 280px;
+
+  text-decoration: none;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  background: #d8a9f4;
+
+  transition: 0.2s;
+}
+
+.curso-card:hover {
+  transform: translateY(-5px);
+}
+
+.curso-card img {
+  width: 100%;
+  height: 190px;
+
+  object-fit: cover;
+}
+
+.curso-card-content {
+  padding: 20px;
+}
+
+.curso-categoria {
+  font-size: 15px;
+  font-weight: 600;
+
+  color: black;
+}
+
+.curso-categoria span {
+  color: #7b2cbf;
+}
+
+.curso-card h3 {
+  margin-top: 10px;
+
+  min-height: 70px;
+
+  font-size: 18px;
+  color: black;
+}
+
+.curso-footer {
+  margin-top: 35px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.curso-footer span:first-child {
+  color: #222;
+  font-size: 15px;
+}
+
+.gratuito {
+  color: #6a0dad;
+  font-size: 20px;
+  font-weight: bold;
+}

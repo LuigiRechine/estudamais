@@ -17,7 +17,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" id="nav">
       <div className="navbar-logo">
         <img src="/logo.png" alt="Estuda+" />
       </div>
@@ -28,7 +28,7 @@ export default function Navbar() {
       </div>
 
       <form className="navbar-search" onSubmit={pesquisar}>
-        <span className="search-icon">🔍</span>
+        <span className="search-icon">🔎︎</span>
 
         <input
           type="text"

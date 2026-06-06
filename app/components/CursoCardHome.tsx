@@ -6,7 +6,7 @@ type CursoCardProps = {
   link: string;
 };
 
-export default function CursoCard({
+export default function CursoCardHome({
   titulo,
   imagem,
   link,
