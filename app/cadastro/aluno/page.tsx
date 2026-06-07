@@ -1,3 +1,4 @@
+'use client';
 import "../../css/cadastro.css";
 import Input from "../../components/Input";
 import Button from "../../components/Button"
@@ -31,7 +32,7 @@ export default function Cadastro() {
               <Input label="Senha" type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
               <div className="btns">
-                <Button text="CONTINUAR" variant="type1" link="/loginAluno" type="submit"/>
+                <Button text="CONTINUAR" variant="type1" type="submit"/>
                 <Button text="CANCELAR" variant="type3" link="/loginAluno" />
             </div>
 

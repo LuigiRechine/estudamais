@@ -20,7 +20,7 @@ export function useAluno() {
 
     // Montamos o objeto que vai para a API
     const dadosLogin = {
-      username: email,
+      email: email,
       password: password
     };
 
@@ -54,7 +54,7 @@ export function useAluno() {
         alert('Cadastro realizado com sucesso!!')
 
         // Vai para a página principal (Dashboard)
-        router.push('/');
+        router.push('/loginAluno');
       })
       .catch(() => {
         // Mostra o erro simples se a senha estiver errada

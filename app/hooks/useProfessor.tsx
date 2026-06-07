@@ -20,7 +20,7 @@ export function useProfessor() {
 
     // Montamos o objeto que vai para a API
     const dadosLogin = {
-      username: email,
+      email: email,
       password: password
     };
 
@@ -54,7 +54,7 @@ export function useProfessor() {
         alert('Cadastro realizado com sucesso!!')
 
         // Vai para a página principal (Dashboard)
-        router.push('/');
+        router.push('/loginProfessor');
       })
       .catch(() => {
         // Mostra o erro simples se a senha estiver errada

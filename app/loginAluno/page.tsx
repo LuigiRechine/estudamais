@@ -1,3 +1,4 @@
+'use client';
 import "../css/login.css";
 import Input from "../components/Input";
 import Button from "../components/Button";
