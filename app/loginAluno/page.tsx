@@ -1,8 +1,15 @@
 import "../css/login.css";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { useAluno } from '../hooks/useAluno';
 
 export default function Login() {
+  const { 
+    email, setEmail, 
+    password, setPassword, 
+    entrar 
+  } = useAluno();
+
   return (
     <main className="login-page">
       <div className="container1">
@@ -21,12 +28,12 @@ export default function Login() {
                 <p>Faça seu login e boa aula!</p>
               </div>
 
-              <form className="form">
-                <Input label="E-mail" type="email" placeholder="Seu E-mail" />
+              <form className="form" onSubmit={entrar}>
+                <Input label="E-mail" type="email" placeholder="Seu E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
-                <Input label="Senha" type="password" placeholder="********" />
+                <Input label="Senha" type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-                <Button text="ENTRAR" variant="type1" link="/" />
+                <Button text="ENTRAR" variant="type1" link="/" type="submit"/>
 
                 <a href="/esqueciSenha/aluno" className="forgot-password">
                   Esqueci minha senha

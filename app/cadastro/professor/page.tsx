@@ -1,6 +1,7 @@
 import "../../css/cadastro.css";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import { useProfessor } from '../../hooks/useProfessor';
 
 export default function Cadastro() {
   return (
