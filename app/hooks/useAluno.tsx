@@ -30,7 +30,7 @@ export function useAluno() {
         Cookies.set('email', resposta.data.name, { expires: 1 }); // Expira o nome em 1 dia
 
         // Vai para a página principal (Dashboard)
-        router.push('/dashboard');
+        router.push('/dashboard/aluno');
       })
       .catch(() => {
         // Mostra o erro simples se a senha estiver errada
@@ -54,13 +54,21 @@ export function useAluno() {
         alert('Cadastro realizado com sucesso!!')
 
         // Vai para a página principal (Dashboard)
-        router.push('/loginAluno');
+        window.location.href = '/loginAluno';
       })
       .catch(() => {
         // Mostra o erro simples se a senha estiver errada
         alert('Não foi possível finalizar o cadastro!');
       });
   }
+
+  function logout() {
+  Cookies.remove('logged');
+  Cookies.remove('email');   
+  Cookies.remove('password');      
+
+  router.push('/loginAluno');   
+}
 
   // Exportamos tudo que a tela vai precisar
   return {
@@ -69,6 +77,7 @@ export function useAluno() {
     name, setName,
     cpf, setCpf,
     entrar,
-    cadastrar
+    cadastrar,
+    logout
   };
 }

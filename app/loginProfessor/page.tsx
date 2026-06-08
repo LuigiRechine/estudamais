@@ -30,9 +30,9 @@ export default function Login() {
               </div>
 
               <form className="form" onSubmit={entrar}>
-                <Input label="E-mail" type="email" placeholder="Seu E-mail" value="email" onChange={(e) => setEmail(e.target.value)}/>
+                <Input label="E-mail" type="email" placeholder="Seu E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
-                <Input label="Senha" type="password" placeholder="********" value="password" onChange={(e) => setPassword(e.target.value)}/>
+                <Input label="Senha" type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
                 <Button text="ENTRAR" variant="type1" link="/" type="submit"/>
 
