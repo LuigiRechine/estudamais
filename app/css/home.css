@@ -11,6 +11,8 @@ html {
   padding-block: 22dvh;
 
   gap: 40px;
+
+  background-color: white;
 }
 
 .hero-text {
@@ -18,8 +20,9 @@ html {
 }
 
 .hero-text h1 {
-  font-size: 54px;
+  font-size: 53px;
   line-height: 1.2;
+  color: black;
 }
 
 .hero-text em {
@@ -76,6 +79,7 @@ html {
 
 .cursos-section {
   padding: 80px 50px;
+  background-color: white;
 }
 
 .cursos-section h2 {
@@ -85,6 +89,8 @@ html {
   font-weight: normal;
 
   margin-bottom: 50px;
+
+  color: black;
 }
 
 .cursos-grid {
@@ -93,4 +99,8 @@ html {
   gap: 25px;
 
   flex-wrap: wrap;
+}
+
+.cursos-grid p{
+  color: black;
 }

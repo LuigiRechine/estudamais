@@ -81,7 +81,7 @@ export default function NovoCurso() {
     };
 
     return (
-        <>
+        <div className="dash">
             <NavbarProfessor />
 
             <div className="dashboard-container">
@@ -171,12 +171,12 @@ export default function NovoCurso() {
                                 Cancelar
                             </button>
                             <button type="submit" className="btn-criar-curso" disabled={loading}>
-                                {loading ? "Criando Curso..." : "✅ Criar Curso"}
+                                {loading ? "Criando Curso..." : " Criar Curso"}
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

@@ -71,7 +71,7 @@ export default function DashboardProfessor() {
   }
 
   return (
-    <>
+    <div className="dash">
       <NavbarProfessor />
 
       <div className="dashboard-container">
@@ -83,12 +83,12 @@ export default function DashboardProfessor() {
         {/* Estatísticas */}
         <div className="stats-grid">
           <div className="stat-card">
-            <span className="stat-icon">📚</span>
+            <img className="icon" src="/iconCurso.png" alt="" />
             <h3>Total de Cursos</h3>
             <p className="stat-number">{stats.totalCursos}</p>
           </div>
           <div className="stat-card">
-            <span className="stat-icon">👥</span>
+            <img className="icon" src="/iconAlunos.png" alt="" />
             <h3>Alunos Ativos</h3>
             <p className="stat-number">{stats.alunosAtivos}</p>
           </div>
@@ -134,6 +134,6 @@ export default function DashboardProfessor() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

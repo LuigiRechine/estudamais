@@ -2,10 +2,19 @@
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+
+}
+
+.dash{
+  background-color: white;
 }
 
 .dashboard-header {
   margin-bottom: 2.5rem;
+}
+
+.dashboard-header p{
+  color: black;
 }
 
 .dashboard-header h1 {
@@ -29,6 +38,19 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: transform 0.2s;
+  border: #5b21b6 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-card h3{
+  color: black;
+}
+
+.icon{
+  width: 40px;
+  margin: 10px;
 }
 
 .stat-card:hover {
@@ -173,6 +195,11 @@
   border-radius: 10px;
   font-size: 1rem;
   transition: border 0.2s;
+  color: black;
+}
+
+.form-group select{
+  color: black;
 }
 
 .form-group input:focus,
