@@ -142,6 +142,8 @@
 .course-info h4 {
   margin: 0 0 0.8rem 0;
   font-size: 1.25rem;
+  color: black;
+  font-weight: bold;
 }
 
 .btn-ver-curso {
@@ -258,4 +260,12 @@
   border: 2px solid #e5e7eb;
   border-radius: 10px;
   font-size: 1rem;
+}
+
+.meus-cursos{
+  min-height: 100dvh;
+}
+
+.recent-courses p{
+ color: black;
 }

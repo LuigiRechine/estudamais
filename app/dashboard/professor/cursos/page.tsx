@@ -50,7 +50,7 @@ export default function MeusCursos() {
   }
 
   return (
-    <>
+    <div className="dash meus-cursos">
       <NavbarProfessor />
 
       <div className="dashboard-container">
@@ -66,7 +66,7 @@ export default function MeusCursos() {
             ← Voltar ao Dashboard
           </Link>
           <Link href="/dashboard/professor/cursos/novo" className="btn-criar-curso">
-            ➕ Criar Novo Curso
+             Criar Novo Curso
           </Link>
         </div>
 
@@ -104,6 +104,6 @@ export default function MeusCursos() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

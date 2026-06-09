@@ -114,7 +114,7 @@ export default function DetalhesCurso({ params }: PageProps) {
   }
 
   return (
-    <>
+    <div className="dash">
       <NavbarProfessor />
 
       <div className="dashboard-container">
@@ -225,13 +225,13 @@ export default function DetalhesCurso({ params }: PageProps) {
               )}
 
               <button type="submit" className="btn-criar-curso btn-block" disabled={loadingForm}>
-                {loadingForm ? "Salvando Aula..." : "➕ Adicionar Aula"}
+                {loadingForm ? "Salvando Aula..." : "Adicionar Aula"}
               </button>
             </form>
           </div>
 
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -98,7 +98,7 @@ export default function DashboardProfessor() {
         <div className="quick-actions">
           <h2>Ações Rápidas</h2>
           <Link href="/dashboard/professor/cursos/novo" className="btn-criar-curso">
-            ➕ Criar Novo Curso
+            Criar Novo Curso
           </Link>
         </div>
 
