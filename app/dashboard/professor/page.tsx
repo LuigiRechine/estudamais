@@ -3,6 +3,7 @@
 import NavbarProfessor from "../../components/NavbarProfessor";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import "../../css/professorDashboard.css";
 
 interface Curso {
@@ -10,124 +11,127 @@ interface Curso {
   titulo: string;
   descricao: string;
   imagem?: string;
-  acessos?: number;
+}
+
+interface Stats {
+  totalCursos: number;
+  alunosAtivos: number;
 }
 
 export default function DashboardProfessor() {
+  const { professor } = useAuth();
   const [cursos, setCursos] = useState<Curso[]>([]);
+  const [stats, setStats] = useState<Stats>({ totalCursos: 0, alunosAtivos: 0 });
   const [loading, setLoading] = useState(true);
-  const [totalCursos, setTotalCursos] = useState(0);
-  
-  // TODO: Depois vamos pegar isso do login/context
-  const professorId = 3;   // ← Mude para o ID real do professor logado
 
-  // Buscar cursos do professor
+  const professorId = professor?.id;
+
   useEffect(() => {
-    const fetchCursos = async () => {
+    if (!professorId) {
+      setLoading(false);
+      return;
+    }
+
+    const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/cursos/professor/${professorId}`);
-        if (response.ok) {
-          const data = await response.json();
-          setCursos(data);
-          setTotalCursos(data.length);
+        setLoading(true);
+        const [cursosRes, alunosRes] = await Promise.all([
+          fetch(`http://localhost:8080/cursos/professor/${professorId}`),
+          fetch(`http://localhost:8080/inscricoes/professor/${professorId}/alunos-ativos`)
+        ]);
+
+        let cursosData: Curso[] = [];
+
+        if (cursosRes.ok) {
+          cursosData = await cursosRes.json();
+          setCursos(cursosData);
+        }
+
+        if (alunosRes.ok) {
+          const alunosData = await alunosRes.json();
+          setStats({
+            totalCursos: cursosData.length,
+            alunosAtivos: alunosData.totalAlunosAtivos || 0,
+          });
+        } else {
+          setStats({ totalCursos: cursosData.length, alunosAtivos: 0 });
         }
       } catch (error) {
-        console.error("Erro ao carregar cursos:", error);
+        console.error("Erro ao carregar dashboard:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchCursos();
+    fetchData();
   }, [professorId]);
 
-  // Pegar apenas os 3 últimos cursos
-  const ultimosCursos = cursos.slice(0, 3);
+  if (!professor) {
+    return <p>Faça login para acessar o dashboard.</p>;
+  }
 
   return (
     <>
       <NavbarProfessor />
 
       <div className="dashboard-container">
-        
-        {/* Cabeçalho */}
         <div className="dashboard-header">
-          <h1>Bem-vindo de volta, Professor!</h1>
+          <h1>Bem-vindo de volta, {professor.nome}!</h1>
           <p>Gerencie seus cursos e acompanhe seu desempenho</p>
         </div>
 
-        <div className="dashboard-content">
-          
-          {/* Coluna Esquerda */}
-          <div className="dashboard-left">
-            {/* Estatísticas */}
-            <div className="stats-grid">
-              <div className="stat-card">
-                <span className="stat-icon">📚</span>
-                <h3>Total de Cursos</h3>
-                <p className="stat-number">{totalCursos}</p>
-              </div>
-              <div className="stat-card">
-                <span className="stat-icon">👥</span>
-                <h3>Alunos Ativos</h3>
-                <p className="stat-number">248</p> {/* Vamos melhorar depois */}
-              </div>
-              <div className="stat-card">
-                <span className="stat-icon">🔥</span>
-                <h3>Acessos este mês</h3>
-                <p className="stat-number">1.847</p> {/* Placeholder por enquanto */}
-              </div>
-            </div>
-
-            {/* Ações Rápidas */}
-            <div className="quick-actions">
-              <h2>Ações Rápidas</h2>
-              <Link href="/dashboard/professor/cursos/novo" className="btn-criar-curso">
-                ➕ Criar Novo Curso
-              </Link>
-              <Link href="/dashboard/professor/meus-cursos" className="btn-secundario">
-                📋 Ver Todos os Meus Cursos
-              </Link>
-            </div>
+        {/* Estatísticas */}
+        <div className="stats-grid">
+          <div className="stat-card">
+            <span className="stat-icon">📚</span>
+            <h3>Total de Cursos</h3>
+            <p className="stat-number">{stats.totalCursos}</p>
           </div>
+          <div className="stat-card">
+            <span className="stat-icon">👥</span>
+            <h3>Alunos Ativos</h3>
+            <p className="stat-number">{stats.alunosAtivos}</p>
+          </div>
+        </div>
 
-          {/* Coluna Direita */}
-          <div className="dashboard-right">
-            <h2>Últimos Cursos Criados</h2>
-            <div className="recent-courses">
-              {loading ? (
-                <p>Carregando cursos...</p>
-              ) : ultimosCursos.length > 0 ? (
-                ultimosCursos.map((curso) => (
-                  <div key={curso.id} className="recent-course-card">
-                    <img 
-                      src={curso.imagem || "/placeholder.jpg"} 
-                      alt={curso.titulo}
-                      className="course-image"
-                    />
-                    <div className="course-info">
-                      <h4>{curso.titulo}</h4>
-                      <p>{curso.descricao?.substring(0, 80)}...</p>
-                      <Link 
-                        href={`/dashboard/professor/cursos/${curso.id}`}
-                        className="btn-ver-curso"
-                      >
-                        Ver Curso →
-                      </Link>
-                    </div>
+        {/* Ações Rápidas */}
+        <div className="quick-actions">
+          <h2>Ações Rápidas</h2>
+          <Link href="/dashboard/professor/cursos/novo" className="btn-criar-curso">
+            ➕ Criar Novo Curso
+          </Link>
+        </div>
+
+        {/* Últimos Cursos - Full Width */}
+        <div className="recent-courses-section">
+          <h2>Últimos Cursos Criados</h2>
+          <div className="recent-courses">
+            {loading ? (
+              <p>Carregando cursos...</p>
+            ) : cursos.length > 0 ? (
+              cursos.slice(0, 5).map((curso) => (   // aumentei para 4
+                <div key={curso.id} className="recent-course-card">
+                  <img
+                    src={curso.imagem || "/placeholder.jpg"}
+                    alt={curso.titulo}
+                    className="course-image"
+                  />
+                  <div className="course-info">
+                    <h4>{curso.titulo}</h4>
+                    <p>{curso.descricao?.substring(0, 100)}...</p>
+                    <Link
+                      href={`/dashboard/professor/cursos/${curso.id}`}
+                      className="btn-ver-curso"
+                    >
+                      Ver Curso →
+                    </Link>
                   </div>
-                ))
-              ) : (
-                <p>Você ainda não tem cursos cadastrados.</p>
-              )}
-            </div>
-
-            <div className="tips-box">
-              <h3>Dica do dia</h3>
-              <p>Adicione aulas com vídeos curtos (5-15 minutos). Isso aumenta muito a taxa de conclusão dos alunos.</p>
-            </div>
+                </div>
+              ))
+            ) : (
+              <p>Você ainda não tem cursos cadastrados. Crie seu primeiro curso!</p>
+            )}
           </div>
-
         </div>
       </div>
     </>

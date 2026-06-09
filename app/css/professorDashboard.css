@@ -1,112 +1,234 @@
 .dashboard-container {
-  padding: 40px 60px;
+  padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .dashboard-header {
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 }
 
 .dashboard-header h1 {
-  color: #3d1268;
-  font-size: 42px;
-  font-family: "Habibi", serif;
+  font-size: 2.2rem;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
 }
 
-.dashboard-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;   /* Duas colunas lado a lado */
-  gap: 40px;
-}
-
-/* ====================== COLUNA ESQUERDA ====================== */
-.dashboard-left {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
+/* Stats */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .stat-card {
   background: white;
-  padding: 24px;
+  padding: 1.8rem;
   border-radius: 16px;
-  border: 3px solid #e8dff1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: all 0.3s;
+  transition: transform 0.2s;
 }
 
 .stat-card:hover {
-  border-color: #5b0ba8;
   transform: translateY(-5px);
 }
 
 .stat-icon {
-  font-size: 32px;
-  margin-bottom: 8px;
+  font-size: 2.5rem;
   display: block;
+  margin-bottom: 1rem;
 }
 
 .stat-number {
-  font-size: 42px;
-  font-weight: bold;
-  color: #3d1268;
-  margin: 8px 0;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #4f46e5;
+  margin: 0.5rem 0;
 }
 
-/* ====================== COLUNA DIREITA ====================== */
-.dashboard-right {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+/* Ações Rápidas */
+.quick-actions {
+  margin-bottom: 3rem;
 }
 
-.recent-courses,
-.tips-box {
-  background: white;
-  padding: 28px;
-  border-radius: 16px;
-  border: 3px solid #e8dff1;
+.quick-actions h2 {
+  margin-bottom: 1.2rem;
+  color: #1f2937;
+  font-size: 1.4rem;
 }
 
-.tips-box {
-  background: #f8f0ff;
-  border-color: #d4b3ff;
-}
-
-/* Botões */
 .btn-criar-curso {
-  display: block;
-  background: #5b0ba8;
+  display: block;                    /* importante */
+  width: 100%;                       /* ocupa toda a largura */
+  max-width: 600px;                  /* limite máximo pra não ficar gigante demais */
+  margin: 0 auto;                    /* centraliza */
+  background: #6d28d9;
   color: white;
-  text-align: center;
-  padding: 18px;
-  font-size: 22px;
-  border-radius: 12px;
+  padding: 1.4rem 2rem;
+  border-radius: 16px;
+  font-size: 1.35rem;
+  font-weight: 700;
   text-decoration: none;
-  margin-bottom: 12px;
-  font-family: "Habibi", serif;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(109, 40, 217, 0.3);
+  transition: all 0.3s ease;
 }
 
 .btn-criar-curso:hover {
-  background: #4f0b96;
-  transform: scale(1.03);
+  background: #5b21b6;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.4);
 }
 
-.btn-secundario {
-  display: block;
+/* Últimos Cursos */
+.recent-courses-section h2 {
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.recent-courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.8rem;
+}
+
+.recent-course-card {
   background: white;
-  color: #3d1268;
-  text-align: center;
-  padding: 16px;
-  font-size: 20px;
-  border: 2px solid #5b0ba8;
-  border-radius: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.recent-course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.course-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 1.3rem;
+}
+
+.course-info h4 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.25rem;
+}
+
+.btn-ver-curso {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #6d28d9;
+  font-weight: 600;
   text-decoration: none;
+}
+
+.btn-ver-curso:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.curso-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.9rem 1.2rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #6d28d9;
+  outline: none;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-cancel {
+  padding: 1rem 2rem;
+  background: #9ca3af;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-criar-curso {
+  flex: 1;
+  padding: 1.1rem;
+  font-size: 1.1rem;
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.success { background: #d1fae5; color: #065f46; }
+.error { background: #fee2e2; color: #b91c1c; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Select styling */
+.form-group select {
+  padding: 0.9rem 1.2rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 1rem;
 }

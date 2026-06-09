@@ -4,73 +4,68 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import api from '../lib/api';
 import Cookies from 'js-cookie';
+import { useAuth } from '../context/AuthContext';
 
 export function useProfessor() {
   const router = useRouter();
+  const { login, logout: logoutContext } = useAuth();   // ← Pegando também o logout
 
-  // Estados simples e separados, iguais aos do cadastro de produtos
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
-  // Função disparada ao clicar no botão Entrar
   function entrar(evento: React.FormEvent) {
-    evento.preventDefault(); // Evita que a página recarregue
+    evento.preventDefault();
 
-    // Montamos o objeto que vai para a API
-    const dadosLogin = {
-      email: email,
-      password: password
-    };
+    const dadosLogin = { email, password };
 
     api.post('/professores/auth', dadosLogin)
       .then((resposta) => {
-        Cookies.set('logged', 'true', { expires: 1 }); // Expira as credenciais de login em 1 dia
-        Cookies.set('email', resposta.data.name, { expires: 1 }); // Expira o nome em 1 dia
+        const professorData = resposta.data;
 
-        // Vai para a página principal (Dashboard)
+        // ✅ Salvar no contexto
+        login({
+          id: professorData.id,
+          nome: professorData.nome || professorData.name,   // aceita os dois formatos
+          email: professorData.email,
+        });
+
+        // Cookies (mantendo compatibilidade com outras partes do sistema)
+        Cookies.set('logged', 'true', { expires: 1 });
+        Cookies.set('email', professorData.email, { expires: 1 });
+
         router.push('/dashboard/professor');
       })
-      .catch(() => {
-        // Mostra o erro simples se a senha estiver errada
+      .catch((erro) => {
+        console.error(erro);
         alert('Erro: Email ou senha incorretos!');
       });
   }
 
   function cadastrar(evento: React.FormEvent) {
-    evento.preventDefault(); // Evita que a página recarregue
+    evento.preventDefault();
 
-    // Montamos o objeto que vai para a API
-    const dadosCadastro = {
-      name: name,
-      email: email,
-      cpf: cpf,
-      password: password
-    };
+    const dadosCadastro = { name, email, cpf, password };
 
     api.post('/professores/', dadosCadastro)
-      .then((resposta) => {
-        alert('Cadastro realizado com sucesso!!')
-
-        // Vai para a página principal (Dashboard)
+      .then(() => {
+        alert('Cadastro realizado com sucesso!!');
         window.location.href = '/loginProfessor';
       })
       .catch(() => {
-        // Mostra o erro simples se a senha estiver errada
         alert('Não foi possível finalizar o cadastro!');
       });
   }
 
   function logout() {
-  Cookies.remove('logged');
-  Cookies.remove('email');   
-  Cookies.remove('password');      
+    Cookies.remove('logged');
+    Cookies.remove('email');
+    
+    logoutContext();           // ← Agora chama o logout do contexto também
+    router.push('/loginProfessor');
+  }
 
-  router.push('/loginProfessor');   
-}
-
-  // Exportamos tudo que a tela vai precisar
   return {
     email, setEmail,
     password, setPassword,

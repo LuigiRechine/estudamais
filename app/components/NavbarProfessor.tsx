@@ -30,13 +30,13 @@ export default function NavbarProfessor() {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <Link href="/professor/dashboard">
+                <Link href="/dashboard/professor">
                     <img src="/logo.png" alt="Estuda+" />
                 </Link>
             </div>
 
             <div className="navbar-links">
-                <Link href="/professor/meus-cursos" className="nav-link">
+                <Link href="/dashboard/professor/cursos" className="nav-link">
                     MEUS CURSOS
                 </Link>
             </div>
