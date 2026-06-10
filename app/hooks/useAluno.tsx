@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import api from '../lib/api';
 import Cookies from 'js-cookie';
@@ -8,74 +8,98 @@ import Cookies from 'js-cookie';
 export function useAluno() {
   const router = useRouter();
 
-  // Estados simples e separados, iguais aos do cadastro de produtos
+  // Estados do formulário (login e cadastro)
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
-  // Função disparada ao clicar no botão Entrar
-  function entrar(evento: React.FormEvent) {
-    evento.preventDefault(); // Evita que a página recarregue
+  // Estados de autenticação (para o dashboard)
+  const [aluno, setAluno] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-    // Montamos o objeto que vai para a API
-    const dadosLogin = {
-      email: email,
-      password: password
-    };
+  // Carrega os dados do aluno logado ao abrir qualquer página
+  useEffect(() => {
+    const alunoId = Cookies.get('alunoId');
+    const nomeCookie = Cookies.get('nomeAluno') || Cookies.get('email');
+
+    if (alunoId) {
+      setAluno({
+        id: Number(alunoId),
+        nome: nomeCookie || 'Aluno'
+      });
+    }
+    setLoading(false);
+  }, []);
+
+  // ==================== LOGIN ====================
+  function entrar(evento: React.FormEvent) {
+    evento.preventDefault();
+
+    const dadosLogin = { email, password };
 
     api.post('/alunos/auth', dadosLogin)
       .then((resposta) => {
-        Cookies.set('logged', 'true', { expires: 1 }); // Expira as credenciais de login em 1 dia
-        Cookies.set('email', resposta.data.name, { expires: 1 }); // Expira o nome em 1 dia
+        const alunoData = resposta.data;
 
-        // Vai para a página principal (Dashboard)
+        // Salva informações importantes nos cookies
+        Cookies.set('logged', 'true', { expires: 1 });
+        Cookies.set('alunoId', alunoData.id.toString(), { expires: 1 });
+        Cookies.set('nomeAluno', alunoData.name || alunoData.nome, { expires: 1 });
+        Cookies.set('email', alunoData.email, { expires: 1 });
+
+        setAluno({
+          id: alunoData.id,
+          nome: alunoData.name || alunoData.nome
+        });
+
         router.push('/dashboard/aluno');
       })
       .catch(() => {
-        // Mostra o erro simples se a senha estiver errada
-        alert('Erro: Email ou senha incorretos!');
+        alert('Email ou senha incorretos!');
       });
   }
 
+  // ==================== CADASTRO ====================
   function cadastrar(evento: React.FormEvent) {
-    evento.preventDefault(); // Evita que a página recarregue
+    evento.preventDefault();
 
-    // Montamos o objeto que vai para a API
-    const dadosCadastro = {
-      name: name,
-      email: email,
-      cpf: cpf,
-      password: password
-    };
+    const dadosCadastro = { name, email, cpf, password };
 
     api.post('/alunos/', dadosCadastro)
-      .then((resposta) => {
-        alert('Cadastro realizado com sucesso!!')
-
-        // Vai para a página principal (Dashboard)
+      .then(() => {
+        alert('Cadastro realizado com sucesso!');
         window.location.href = '/loginAluno';
       })
       .catch(() => {
-        // Mostra o erro simples se a senha estiver errada
-        alert('Não foi possível finalizar o cadastro!');
+        alert('Não foi possível realizar o cadastro!');
       });
   }
 
+  // ==================== LOGOUT ====================
   function logout() {
-  Cookies.remove('logged');
-  Cookies.remove('email');   
-  Cookies.remove('password');      
+    Cookies.remove('logged');
+    Cookies.remove('alunoId');
+    Cookies.remove('nomeAluno');
+    Cookies.remove('email');
+    Cookies.remove('password');
 
-  router.push('/loginAluno');   
-}
+    setAluno(null);
+    router.push('/loginAluno');
+  }
 
-  // Exportamos tudo que a tela vai precisar
   return {
-    email, setEmail,
-    password, setPassword,
+    // Formulário
     name, setName,
+    email, setEmail,
     cpf, setCpf,
+    password, setPassword,
+
+    // Auth State
+    aluno,
+    loading,
+
+    // Funções
     entrar,
     cadastrar,
     logout
