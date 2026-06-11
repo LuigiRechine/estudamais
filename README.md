@@ -1,7 +1,5 @@
 # EstudaMais - Frontend
 
-![EstudaMais](https://via.placeholder.com/800x200/4F46E5/FFFFFF?text=EstudaMais)
-
 Plataforma moderna de **gestão de ensino e aprendizagem** (LMS) para instituições de ensino.
 
 ## Sobre o Projeto
