@@ -33,7 +33,7 @@ export default function DashboardAluno() {
       <NavbarAluno />
       <div className='body'>
         <h1>
-          Olá, {aluno?.nome?.split(" ")[0]}! 👋
+          Seja bem-vindo de volta, {aluno?.nome?.split(" ")[0]}!
         </h1>
 
         <h2>Cursos em Andamento</h2>
