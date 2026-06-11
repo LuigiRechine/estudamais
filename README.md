@@ -1,14 +1,20 @@
 # EstudaMais - Frontend
 
-Plataforma moderna de **gestão de ensino e aprendizagem** (LMS) para instituições de ensino.
+Plataforma moderna de **cursos online** gratuitos.
 
 ## Sobre o Projeto
 
-**EstudaMais** é uma aplicação completa para gerenciamento educacional, desenvolvida para facilitar o ensino híbrido e EAD. Este repositório contém o **frontend** da aplicação.
+**EstudaMais** é uma plataforma de cursos online onde **professores** podem cadastrar e gerenciar seus cursos, e **alunos** podem se inscrever gratuitamente. 
+
+O objetivo é democratizar o acesso ao conhecimento, oferecendo uma experiência simples, moderna e eficiente tanto para quem ensina quanto para quem aprende.
+
+Este repositório contém o **frontend** da aplicação.
 
 ### Principais Funcionalidades
 
 - Autenticação separada para **Alunos** e **Professores**
+- Professores podem cadastrar, editar e gerenciar cursos
+- Alunos podem navegar, se inscrever e acompanhar cursos gratuitamente
 - Dashboard personalizado por tipo de usuário
 - Sistema de cadastro de usuários
 - Recuperação de senha
