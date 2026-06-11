@@ -4,7 +4,7 @@ import NavbarProfessor from "../../../components/NavbarProfessor";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
-import "../../../css/professorDashboard.css"; // Reutilizando seus estilos
+import "../../../css/professorDashboard.css";
 
 interface Curso {
   id: number;
@@ -54,13 +54,11 @@ export default function MeusCursos() {
       <NavbarProfessor />
 
       <div className="dashboard-container">
-        {/* Cabeçalho da Página */}
         <div className="dashboard-header">
           <h1>Meus Cursos</h1>
           <p>Gerencie todos os cursos que você publicou na plataforma</p>
         </div>
 
-        {/* Barra de Ações Supreior */}
         <div className="quick-actions" style={{ marginBottom: '2rem' }}>
           <Link href="/dashboard/professor" className="btn-cancel" style={{ marginRight: '1rem', textDecoration: 'none' }}>
             ← Voltar ao Dashboard
@@ -70,7 +68,6 @@ export default function MeusCursos() {
           </Link>
         </div>
 
-        {/* Listagem Completa de Cursos */}
         <div className="recent-courses-section">
           <h2>Todos os Cursos ({cursos.length})</h2>
           
@@ -78,7 +75,7 @@ export default function MeusCursos() {
             {loading ? (
               <p>Carregando seus cursos...</p>
             ) : cursos.length > 0 ? (
-              // Sem o .slice(), listando absolutamente todos do professor
+
               cursos.map((curso) => (
                 <div key={curso.id} className="recent-course-card">
                   <img

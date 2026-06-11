@@ -4,51 +4,120 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import NavbarAluno from '../../../../components/NavbarAluno';
 import api from '../../../../lib/api';
+import { useAluno } from '../../../../hooks/useAluno';
+import "@/app/css/cursoId.css"
 
 export default function CursoDetail() {
   const { id } = useParams();
   const router = useRouter();
+  const { aluno } = useAluno();
+
   const [curso, setCurso] = useState<any>(null);
   const [aulas, setAulas] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [jaMatriculado, setJaMatriculado] = useState(false);
 
   useEffect(() => {
-    api.get(`/cursos/${id}`).then(res => setCurso(res.data));
-    api.get(`/aulas/curso/${id}`).then(res => setAulas(res.data));
-  }, [id]);
+    if (!id) return;
+
+    api.get(`/cursos/${id}`)
+      .then(res => setCurso(res.data))
+      .catch(err => console.error(err));
+
+    api.get(`/aulas/curso/${id}`)
+      .then(res => setAulas(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
+
+    if (aluno?.id) {
+      api.get(`/inscricoes/aluno/${aluno.id}`)
+        .then(res => {
+          const matriculado = res.data.some((i: any) => i.curso?.id === Number(id));
+          setJaMatriculado(matriculado);
+        });
+    }
+  }, [id, aluno?.id]);
 
   const matricular = () => {
-    const alunoId = 1; // TODO: pegar do auth
-    api.post(`/inscricoes/matricular?alunoId=${alunoId}&cursoId=${id}`)
+    if (!aluno?.id) {
+      alert("Você precisa estar logado!");
+      return;
+    }
+
+    const payload = {
+      alunoId: aluno.id,
+      cursoId: Number(id)
+    };
+
+    api.post('/inscricoes/matricular', payload)
       .then(() => {
-        alert("Matriculado com sucesso!");
-        router.push(`/dashboard/aluno/curso/${id}`);
+        alert("Matrícula realizada com sucesso! 🎉");
+        setJaMatriculado(true);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.error(err.response?.data || err);
+
+        api.post(`/inscricoes/matricular?alunoId=${aluno.id}&cursoId=${id}`)
+          .then(() => {
+            alert("Matrícula realizada com sucesso! 🎉");
+            setJaMatriculado(true);
+          })
+          .catch((err2) => {
+            console.error(err2);
+            alert("Erro ao matricular. Verifique o console (F12) e me mande o erro completo.");
+          });
       });
   };
+
+  if (loading) return <div className='carregando'><NavbarAluno /><p>Carregando curso...</p></div>;
 
   return (
     <>
       <NavbarAluno />
-      <div style={{ padding: '40px' }}>
+      <div className='page'>
         {curso && (
-          <>
-            <img src={curso.imagem} alt={curso.titulo} style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '12px' }} />
-            <h1>{curso.titulo}</h1>
-            <p>{curso.descricao}</p>
-            
-            <button onClick={matricular} style={{ background: '#5b0ba8', color: 'white', padding: '15px 40px', borderRadius: '30px', fontSize: '20px' }}>
-              Matricular-me
-            </button>
+          <div className='card'>
+            <img
+              src={curso.imagem || '/placeholder.jpg'}
+              alt={curso.titulo}
+            />
 
-            <h2 style={{ marginTop: '40px' }}>Aulas</h2>
-            <div>
-              {aulas.map(aula => (
-                <div key={aula.id} style={{ padding: '15px', background: 'white', marginBottom: '10px', borderRadius: '8px', cursor: 'pointer' }}
-                     onClick={() => router.push(`/dashboard/aluno/curso/${id}/aula/${aula.id}`)}>
-                  {aula.titulo} {aula.duracao && `(${aula.duracao})`}
-                </div>
-              ))}
+            <div className='card-infos'>
+              <div className='txts'>
+                <h1>{curso.titulo}</h1>
+                <p>{curso.descricao}</p>
+              </div>
+
+              <div className='btn'>
+                {jaMatriculado ? (
+                  <button
+                    onClick={() => router.push(`/dashboard/aluno/curso/${id}/aulas`)}>
+                    Acessar Curso →
+                  </button>
+                ) : (
+                  <button
+                    onClick={matricular}>
+                    Matricular-me
+                  </button>
+                )}
+              </div>
             </div>
-          </>
+
+            <h2>Aulas do Curso</h2>
+            <div className='titulo'>
+              {aulas.length > 0 ? (
+                aulas.map((aula: any) => (
+                  <div className='botao' key={aula.id} style={{ cursor: jaMatriculado ? 'pointer' : 'default' }} onClick={() => jaMatriculado && router.push(`/dashboard/aluno/curso/${id}/aula/${aula.id}`)}>
+                    <strong>{aula.titulo}</strong>
+                    {aula.duracao && <span>• {aula.duracao}</span>}
+                  </div>
+                ))
+              ) : (
+                <p>Este curso ainda não tem aulas cadastradas.</p>
+              )}
+            </div>
+          </div>
         )}
       </div>
     </>

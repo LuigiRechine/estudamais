@@ -44,15 +44,9 @@ export default function NovoCurso() {
                     descricao: formData.descricao,
                     duracaoHoras: parseInt(formData.duracaoHoras),
                     imagem: formData.imagem,
-
-                    // 1. Gera o link interno automaticamente usando o título (Ex: /cursos/financas-pessoais)
                     link: `/cursos/${formData.titulo.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
-
-                    // 2. Garante que o status inicial vá como verdadeiro e acessos zerados
                     ativo: true,
                     acessos: 0,
-
-                    // 3. Passa o objeto professor completo com o ID esperado pelo Spring
                     professor: {
                         id: professor.id
                     }

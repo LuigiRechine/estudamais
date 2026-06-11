@@ -3,7 +3,7 @@
 import NavbarProfessor from "@/app/components/NavbarProfessor";
 import { useEffect, useState, use } from "react";
 import Link from "next/link";
-import "@/app/css/detalhesCurso.css"; // Seu novo arquivo CSS dedicado
+import "@/app/css/detalhesCurso.css";
 
 interface Aula {
   id?: number;
@@ -128,7 +128,6 @@ export default function DetalhesCurso({ params }: PageProps) {
 
         <div className="detalhes-layout-split">
           
-          {/* Coluna 1: Aulas */}
           <div className="aulas-lista-section">
             <h2>Aulas Cadastradas ({aulas.length})</h2>
             
@@ -151,7 +150,6 @@ export default function DetalhesCurso({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Coluna 2: Formulário */}
           <div className="form-aula-section">
             <h2>Adicionar Nova Aula</h2>
             

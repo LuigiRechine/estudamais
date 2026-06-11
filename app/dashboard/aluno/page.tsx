@@ -5,6 +5,7 @@ import NavbarAluno from '../../components/NavbarAluno';
 import CursoCard from '../../components/CursoCard';
 import api from '../../lib/api';
 import { useAluno } from '../../hooks/useAluno';
+import "@/app/css/alunoDashboard.css"
 
 export default function DashboardAluno() {
   const { aluno, loading: alunoLoading } = useAluno();
@@ -16,7 +17,6 @@ export default function DashboardAluno() {
 
     api.get(`/inscricoes/aluno/${aluno.id}`)
       .then(res => {
-        // Cada inscrição tem o objeto "curso"
         const cursos = res.data
           .filter((i: any) => i.ativo)
           .map((i: any) => i.curso);
@@ -31,17 +31,17 @@ export default function DashboardAluno() {
   return (
     <>
       <NavbarAluno />
-      <div style={{ padding: '40px', background: '#f8f4ff', minHeight: '100vh' }}>
-        <h1 style={{ color: '#3d1268', fontSize: '42px' }}>
+      <div className='body'>
+        <h1>
           Olá, {aluno?.nome?.split(" ")[0]}! 👋
         </h1>
 
-        <h2 style={{ marginTop: '40px', color: '#5b0ba8' }}>Cursos em Andamento</h2>
+        <h2>Cursos em Andamento</h2>
 
         {loading ? (
           <p>Carregando seus cursos...</p>
         ) : cursosEmAndamento.length > 0 ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', marginTop: '20px' }}>
+          <div className='cards'>
             {cursosEmAndamento.map((curso) => (
               <CursoCard
                 key={curso.id}

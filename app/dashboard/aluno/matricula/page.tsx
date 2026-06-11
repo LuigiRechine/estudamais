@@ -5,6 +5,7 @@ import NavbarAluno from '../../../components/NavbarAluno';
 import CursoCard from '../../../components/CursoCard';
 import api from '../../../lib/api';
 import { useAluno } from '../../../hooks/useAluno';
+import "@/app/css/matricula.css"
 
 export default function MatriculaPage() {
   const { aluno } = useAluno();
@@ -18,7 +19,6 @@ export default function MatriculaPage() {
       .then(res => {
         setCursos(res.data);
         
-        // Extrai categorias únicas
         const cats = Array.from(new Set(res.data.map((c: any) => c.categoria)));
         setCategorias(cats as string[]);
       })
@@ -34,22 +34,20 @@ export default function MatriculaPage() {
   return (
     <>
       <NavbarAluno />
-      <div style={{ padding: '40px', background: '#f8f4ff', minHeight: '100vh' }}>
+      <div className='geral'>
         <h1>Todos os Cursos Disponíveis</h1>
 
-        <div style={{ margin: '25px 0', display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+        <div className='input'>
           <input
             type="text"
             placeholder="Buscar por título..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{ padding: '12px 20px', borderRadius: '30px', border: '2px solid #5b0ba8', width: '320px' }}
           />
 
           <select
             value={filtroCategoria}
             onChange={(e) => setFiltroCategoria(e.target.value)}
-            style={{ padding: '12px 20px', borderRadius: '30px', border: '2px solid #5b0ba8' }}
           >
             <option value="">Todas as categorias</option>
             {categorias.map(cat => (
@@ -58,7 +56,7 @@ export default function MatriculaPage() {
           </select>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px' }}>
+        <div className='cards'>
           {cursosFiltrados.map((curso) => (
             <CursoCard
               key={curso.id}

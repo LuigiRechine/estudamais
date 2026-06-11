@@ -1,0 +1,93 @@
+.loading{
+    padding: 40px;
+}
+
+.page{
+    padding: 40px;
+    background-color: #f8f4ff;
+    min-height: 100vh;
+}
+
+.curso{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.header img{
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.txts h1{
+    color: #3d1268;
+    margin: 0;
+}
+
+.txts p{
+    color: #666;
+    margin-top: 5px;
+}
+
+.curso h2{
+    color: #5b0ba8;
+    margin-bottom: 25px;
+}
+
+.btn{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.infos{
+    padding: 20px 24px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-info{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.div{
+    background-color: #5b0ba8;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.diferente strong{
+    font-size: 18px;
+}
+
+.diferente p{
+    margin: 4px 0 0 0;
+    color: #666;
+}
+
+.assistir{
+    color: #5b0ba8;
+    font-weight: bold;
+}

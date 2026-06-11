@@ -1,0 +1,74 @@
+.carregando{
+    padding: 40px;
+}
+
+.page{
+    padding: 40px;
+    background-color: #f8f4ff;
+    min-height: 100vh;
+}
+
+.card{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card img{
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.card-infos{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.txts h1{
+    color: #3d1268;
+    font-size: 38px;
+}
+
+.txts p{
+    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.btn button{
+    background-color: #5b0ba8;
+    color: white;
+    padding: 16px 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.card h2{
+    margin-top: 50px;
+    color: #5b0ba8;
+}
+
+.titulo{
+    margin-top: 20px;
+}
+
+.botao{
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.botao span{
+    margin-left: 15px;
+    color: #777;
+}

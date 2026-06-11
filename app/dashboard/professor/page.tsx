@@ -80,7 +80,6 @@ export default function DashboardProfessor() {
           <p>Gerencie seus cursos e acompanhe seu desempenho</p>
         </div>
 
-        {/* Estatísticas */}
         <div className="stats-grid">
           <div className="stat-card">
             <img className="icon" src="/iconCurso.png" alt="" />
@@ -94,7 +93,6 @@ export default function DashboardProfessor() {
           </div>
         </div>
 
-        {/* Ações Rápidas */}
         <div className="quick-actions">
           <h2>Ações Rápidas</h2>
           <Link href="/dashboard/professor/cursos/novo" className="btn-criar-curso">
@@ -102,14 +100,13 @@ export default function DashboardProfessor() {
           </Link>
         </div>
 
-        {/* Últimos Cursos - Full Width */}
         <div className="recent-courses-section">
           <h2>Últimos Cursos Criados</h2>
           <div className="recent-courses">
             {loading ? (
               <p>Carregando cursos...</p>
             ) : cursos.length > 0 ? (
-              cursos.slice(0, 5).map((curso) => (   // aumentei para 4
+              cursos.slice(0, 5).map((curso) => (
                 <div key={curso.id} className="recent-course-card">
                   <img
                     src={curso.imagem || "/placeholder.jpg"}

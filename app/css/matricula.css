@@ -1,0 +1,31 @@
+.geral{
+    padding: 40px;
+    background-color: #f8f4ff;
+    min-height: 100dvh;
+}
+
+.input{
+    margin: 25px 0;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.input input{
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 2px solid #5b0ba8;
+    width: 320px;
+}
+
+.input select{
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 2px solid #5b0ba8;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}

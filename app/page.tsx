@@ -64,7 +64,6 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Mantive os cards do Hero como está (ou podemos mudar depois) */}
         <div className="cards">
           <CursoCardHome
             titulo="Especialista em IA"
@@ -105,7 +104,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ====================== CURSOS MAIS ACESSADOS ====================== */}
       <section className="cursos-section">
         <h2>Cursos mais acessados</h2>
 
@@ -125,7 +123,6 @@ export default function Home() {
               />
             ))}
 
-            {/* Se não tiver nenhum curso cadastrado ainda */}
             {cursosDestaques.length === 0 && (
               <p>Nenhum curso disponível no momento.</p>
             )}
