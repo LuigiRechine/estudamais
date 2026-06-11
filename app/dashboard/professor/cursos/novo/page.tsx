@@ -124,8 +124,7 @@ export default function NovoCurso() {
                                 placeholder="Descreva detalhadamente o que o aluno vai aprender..."
                             />
                         </div>
-
-                        <div className="form-row">
+                        
                             <div className="form-group">
                                 <label>Duração (em horas) *</label>
                                 <input
@@ -138,9 +137,6 @@ export default function NovoCurso() {
                                     placeholder="Ex: 12"
                                 />
                             </div>
-
-
-                        </div>
 
                         <div className="form-group">
                             <label>URL da Imagem (Capa) *</label>
