@@ -50,3 +50,12 @@ npm install
 
 # 3. Execute o projeto
 npm run dev
+
+```
+
+### Equipe
+
+#### Anna Julia Galhardo de Oliveira
+#### Luigi Barros Rechinelli
+#### Luisa Valim de Souza
+#### Maria Yumi Souto Matsuzaki
