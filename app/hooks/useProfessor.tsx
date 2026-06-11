@@ -8,7 +8,7 @@ import { useAuth } from '../context/AuthContext';
 
 export function useProfessor() {
   const router = useRouter();
-  const { login, logout: logoutContext } = useAuth();   // ← Pegando também o logout
+  const { login, logout: logoutContext } = useAuth(); 
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,14 +24,12 @@ export function useProfessor() {
       .then((resposta) => {
         const professorData = resposta.data;
 
-        // ✅ Salvar no contexto
         login({
           id: professorData.id,
-          nome: professorData.nome || professorData.name,   // aceita os dois formatos
+          nome: professorData.nome || professorData.name,  
           email: professorData.email,
         });
 
-        // Cookies (mantendo compatibilidade com outras partes do sistema)
         Cookies.set('logged', 'true', { expires: 1 });
         Cookies.set('email', professorData.email, { expires: 1 });
 
@@ -62,7 +60,7 @@ export function useProfessor() {
     Cookies.remove('logged');
     Cookies.remove('email');
     
-    logoutContext();           // ← Agora chama o logout do contexto também
+    logoutContext();       
     router.push('/loginProfessor');
   }
 

@@ -60,12 +60,17 @@
     margin-top: 20px;
 }
 
+.titulo p{
+    color: black;
+}
+
 .botao{
     padding: 20px;
     background-color: white;
     margin-bottom: 12px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: black;
 }
 
 .botao span{

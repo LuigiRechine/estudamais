@@ -8,17 +8,14 @@ import Cookies from 'js-cookie';
 export function useAluno() {
   const router = useRouter();
 
-  // Estados do formulário (login e cadastro)
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
-  // Estados de autenticação (para o dashboard)
   const [aluno, setAluno] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  // Carrega os dados do aluno logado ao abrir qualquer página
   useEffect(() => {
     const alunoId = Cookies.get('alunoId');
     const nomeCookie = Cookies.get('nomeAluno') || Cookies.get('email');
@@ -32,7 +29,6 @@ export function useAluno() {
     setLoading(false);
   }, []);
 
-  // ==================== LOGIN ====================
   function entrar(evento: React.FormEvent) {
     evento.preventDefault();
 
@@ -42,7 +38,6 @@ export function useAluno() {
       .then((resposta) => {
         const alunoData = resposta.data;
 
-        // Salva informações importantes nos cookies
         Cookies.set('logged', 'true', { expires: 1 });
         Cookies.set('alunoId', alunoData.id.toString(), { expires: 1 });
         Cookies.set('nomeAluno', alunoData.name || alunoData.nome, { expires: 1 });
@@ -60,7 +55,6 @@ export function useAluno() {
       });
   }
 
-  // ==================== CADASTRO ====================
   function cadastrar(evento: React.FormEvent) {
     evento.preventDefault();
 
@@ -76,7 +70,6 @@ export function useAluno() {
       });
   }
 
-  // ==================== LOGOUT ====================
   function logout() {
     Cookies.remove('logged');
     Cookies.remove('alunoId');
@@ -89,17 +82,14 @@ export function useAluno() {
   }
 
   return {
-    // Formulário
     name, setName,
     email, setEmail,
     cpf, setCpf,
     password, setPassword,
 
-    // Auth State
     aluno,
     loading,
 
-    // Funções
     entrar,
     cadastrar,
     logout

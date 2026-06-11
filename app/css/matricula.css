@@ -2,6 +2,7 @@
     padding: 40px;
     background-color: #f8f4ff;
     min-height: 100dvh;
+    color: black;
 }
 
 .inp{
@@ -16,6 +17,7 @@
     border-radius: 30px;
     border: 2px solid #5b0ba8;
     width: 320px;
+    color: black;
 }
 
 .inp select{

@@ -36,7 +36,7 @@ export default function Login() {
 
                 <Input label="Senha" type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-                <Button text="ENTRAR" variant="type1" link="/" type="submit"/>
+                <Button text="ENTRAR" variant="type1" type="submit"/>
 
                 <a href="/esqueciSenha/aluno" className="forgot-password">
                   Esqueci minha senha
