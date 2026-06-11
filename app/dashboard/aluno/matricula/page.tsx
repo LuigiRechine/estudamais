@@ -37,7 +37,7 @@ export default function MatriculaPage() {
       <div className='geral'>
         <h1>Todos os Cursos Disponíveis</h1>
 
-        <div className='input'>
+        <div className='inp'>
           <input
             type="text"
             placeholder="Buscar por título..."

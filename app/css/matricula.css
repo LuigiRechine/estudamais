@@ -4,21 +4,21 @@
     min-height: 100dvh;
 }
 
-.input{
+.inp{
     margin: 25px 0;
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
 
-.input input{
+.inp input{
     padding: 12px 20px;
     border-radius: 30px;
     border: 2px solid #5b0ba8;
     width: 320px;
 }
 
-.input select{
+.inp select{
     padding: 12px 20px;
     border-radius: 30px;
     border: 2px solid #5b0ba8;
