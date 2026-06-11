@@ -2,6 +2,8 @@
 
 Plataforma moderna de **cursos online** gratuitos.
 
+![Pagina inicial](public/paginaInicial.png)
+
 ## Sobre o Projeto
 
 **EstudaMais** é uma plataforma de cursos online onde **professores** podem cadastrar e gerenciar seus cursos, e **alunos** podem se inscrever gratuitamente. 
